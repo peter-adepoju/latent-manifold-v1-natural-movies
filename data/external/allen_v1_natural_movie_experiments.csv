@@ -1,0 +1,4 @@
+id,imaging_depth,targeted_structure,cre_line,reporter_line,acquisition_age_days,experiment_container_id,session_type,donor_name,specimen_name,fail_eye_tracking,putative_layer
+500855614,175,VISp,Cux2-CreERT2,Ai93(TITL-GCaMP6f),94,511507650,three_session_C,222424,Cux2-CreERT2;Camk2a-tTA;Ai93-222424,True,L2/3
+500964514,175,VISp,Cux2-CreERT2,Ai93(TITL-GCaMP6f),97,511509529,three_session_B,222420,Cux2-CreERT2;Camk2a-tTA;Ai93-222420,True,L2/3
+501271265,175,VISp,Cux2-CreERT2,Ai93(TITL-GCaMP6f),100,511509529,three_session_A,222420,Cux2-CreERT2;Camk2a-tTA;Ai93-222420,True,L2/3

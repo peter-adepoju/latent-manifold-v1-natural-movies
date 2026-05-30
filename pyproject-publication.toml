@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "v1-manifold-publication-upgrade"
+version = "0.1.0"
+description = "Publication upgrade tools for V1 natural movie neural manifold analyses"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["v1_manifold_publication*"]

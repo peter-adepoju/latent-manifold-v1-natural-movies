@@ -1,0 +1,204 @@
+project:
+  name: v1_natural_movie_manifold_publication_upgrade
+  random_seed: 42
+  session_id_column: session_id
+  mouse_id_column: mouse_id
+  cre_line_column: cre_line
+  imaging_depth_column: imaging_depth
+  structure_column: targeted_structure
+  primary_structure: VISp
+paths:
+  existing_project_root: C:\Users\Peter\Documents\projects\NeuroAI\latent-manifold-v1-natural-movies
+  data_dir: data
+  interim_dir: data/interim
+  processed_dir: data/processed
+  tables_dir: reports/tables
+  figures_dir: reports/figures
+  models_dir: models
+  publication_tables_dir: reports/tables/publication_upgrade
+  publication_figures_dir: reports/figures/publication_upgrade
+cohort:
+  target_structure: VISp
+  natural_movie_stimuli:
+  - natural_movie_one
+  - natural_movie_three
+  preferred_cre_lines:
+  - Cux2-CreERT2
+  - Rorb-IRES2-Cre
+  - Rbp4-Cre_KL100
+  - Ntsr1-Cre_GN220
+  - Emx1-IRES-Cre
+  min_cells: 50
+  min_repeats: 5
+  max_sessions_per_group: 12
+  layer_depth_bins:
+    L2/3:
+    - 150
+    - 250
+    L4:
+    - 250
+    - 375
+    L5:
+    - 375
+    - 525
+    L6:
+    - 525
+    - 700
+stimulus_features:
+  resize_shape:
+  - 96
+  - 160
+  gabor_enabled: true
+  gabor_frequencies:
+  - 0.04
+  - 0.08
+  - 0.16
+  - 0.24
+  gabor_orientations_deg:
+  - 0
+  - 22.5
+  - 45
+  - 67.5
+  - 90
+  - 112.5
+  - 135
+  - 157.5
+  compute_motion_energy: true
+  compute_fourier_slope: true
+  temporal_window: 1
+cv:
+  n_splits: 5
+  n_movie_blocks: 5
+  heldout_repeats: true
+  heldout_contiguous_blocks: true
+  heldout_sessions: true
+  heldout_mice: true
+models:
+  ridge_alphas:
+  - 0.01
+  - 0.1
+  - 1.0
+  - 10.0
+  - 100.0
+  random_state: 42
+  n_permutations: 1000
+  n_bootstrap: 2000
+  cell_count_subsamples: 100
+  matched_cell_count: 50
+brain_model_alignment:
+  enabled: true
+  image_batch_size: 64
+  models:
+  - name: gabor_bank
+    type: analytic
+  - name: resnet18
+    type: torchvision
+    pretrained: true
+  - name: resnet50
+    type: torchvision
+    pretrained: true
+  - name: vit_b_16
+    type: torchvision
+    pretrained: true
+  rsa_metric: correlation
+  cka_centering: true
+manuscript:
+  target_story: layer_specific_v1_manifold_geometry_during_natural_vision
+  primary_outcome: heldout_repeat_population_decoding_r2
+  secondary_outcomes:
+  - manifold_dimensionality
+  - trajectory_curvature
+  - geometry_stimulus_event_enrichment
+  - rsa_cka_brain_model_alignment
+publication_safety:
+  default_run_label: publication_upgrade_v2
+  protect_existing_generated_artifacts: true
+  protected_directories:
+  - data
+  - models
+  - reports
+  require_explicit_write_flag_for_versioned_outputs: true
+success_criteria:
+  minimum_processed_sessions_for_manuscript: 12
+  minimum_layers_for_layer_claim: 3
+  minimum_mice_for_population_claim: 3
+  top_journal_candidate_outcomes:
+  - layer_specific_manifold_geometry_after_cell_count_matching
+  - layer_specific_brain_model_alignment
+  - geometry_event_enrichment_for_motion_or_scene_transitions
+  - rigorous_negative_result_for_low_dimensional_embedding_generalization
+stimulus_feature_hierarchy:
+  level1_luminance_contrast:
+  - luminance_mean
+  - luminance_std
+  - rms_contrast
+  - local_contrast_mean
+  - local_contrast_std
+  - local_contrast_p95
+  level2_spatial_orientation:
+  - spatial_frequency_centroid
+  - low_frequency_power
+  - mid_frequency_power
+  - high_frequency_power
+  - fourier_power_slope
+  - orientation_selectivity
+  - orientation_entropy
+  - edge_density_p90
+  - edge_magnitude_mean
+  - edge_magnitude_p95
+  level3_temporal_motion:
+  - temporal_absdiff_mean
+  - temporal_absdiff_rms
+  - temporal_absdiff_p95
+  - temporal_contrast
+  - motion_energy
+  - motion_proxy_magnitude
+  - scene_change_score
+encoding_models:
+  primary_models:
+  - ridge_cv
+  - elastic_net
+  - reduced_rank_ridge
+  - kernel_ridge_rbf
+  baselines:
+  - mean_response_baseline
+  - frame_index_fourier_baseline
+  - population_energy_baseline
+  reduced_rank_components:
+  - 3
+  - 5
+  - 10
+cebra_variants:
+  enabled: true
+  variants:
+  - cebra_time
+  - cebra_stimulus_low_level
+  - cebra_stimulus_motion
+  - cebra_hybrid_time_stimulus
+latent_dynamics:
+  horizons:
+  - 1
+  - 5
+  - 10
+  - 20
+  - 50
+  history: 10
+  baselines:
+  - persistence_baseline
+  - mean_state_baseline
+  - linear_autoregressive
+dnn_feature_extraction:
+  dry_run_by_default: true
+  include_pretrained_controls: true
+  include_untrained_controls: true
+  model_families:
+  - alexnet
+  - vgg16
+  - resnet50
+  - convnext_tiny
+  - vit_b_16
+  - dinov2_optional
+statistical_models:
+  decoding_formula: decoding_r2 ~ feature_type + embedding_type + putative_layer
+  geometry_formula: manifold_metric ~ putative_layer + cre_line + n_cells
+  dnn_alignment_formula: rsa_score ~ model_family + model_layer_depth + putative_layer

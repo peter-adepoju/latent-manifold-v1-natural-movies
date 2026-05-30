@@ -1,0 +1,30 @@
+# Publication multi-session upgrade defaults.
+run_label: publication_upgrade_v3_multisession
+
+minimum_sessions:
+  exploratory: 1
+  multi_session_preprint: 3
+  top_journal_target: 6
+
+cv:
+  n_movie_blocks: 5
+
+models:
+  ridge_alphas: [0.1, 1.0, 10.0, 100.0]
+  n_permutations: 1000
+  n_bootstrap: 1000
+  n_cell_subsamples: 100
+  matched_cell_count: 50
+
+encoding_models:
+  primary_models:
+    - ridge_cv
+    - elastic_net
+    - reduced_rank_ridge
+    - kernel_ridge_rbf
+
+publication_claim_gates:
+  require_noise_ceiling: true
+  require_null_controls: true
+  require_cross_session_alignment: true
+  require_dnn_controls_for_deep_alignment: true

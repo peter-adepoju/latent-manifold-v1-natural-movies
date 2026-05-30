@@ -1,0 +1,8 @@
+path,exists,type
+notebooks,True,dir
+src,True,dir
+data,True,dir
+reports,True,dir
+reports/tables,True,dir
+reports/figures,True,dir
+core_python_dependencies,True,import

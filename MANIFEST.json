@@ -1,0 +1,17 @@
+{
+  "created": "2026-05-25T21:40:02.017808",
+  "purpose": "Multi-session publication upgrade for notebooks 13-17 plus asset preparation driver.",
+  "files": [
+    "README_PUBLICATION_MULTISESSION_UPGRADE_V3.md",
+    "configs/publication_multisession_upgrade.yaml",
+    "notebooks/12c_multisession_asset_preparation_and_driver.ipynb",
+    "notebooks/13_multisession_encoding_decoding_and_nulls.ipynb",
+    "notebooks/14_layer_geometry_statistics.ipynb",
+    "notebooks/15_brain_model_alignment_rsa_cka.ipynb",
+    "notebooks/16_cross_session_manifold_alignment.ipynb",
+    "notebooks/17_publication_figures_and_manuscript_assets.ipynb",
+    "scripts/run_publication_upgrade_multisession.py",
+    "src/v1_manifold_publication/__init__.py",
+    "src/v1_manifold_publication/multisession_core.py"
+  ]
+}

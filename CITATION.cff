@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: "Latent manifold geometry of V1 population codes during natural image viewing"
+message: "If this project is useful, please cite the repository and the dataset/method papers listed in the README."
+type: software
+authors:
+  - family-names: Adepoju
+    given-names: Peter
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/peter-adepoju/latent-manifold-v1-natural-movies"
+keywords:
+  - NeuroAI
+  - neural manifolds
+  - Allen Brain Observatory
+  - calcium imaging
+  - CEBRA
