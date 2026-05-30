@@ -1,46 +1,72 @@
-# NeuroAI: V1 Natural Movie Manifold Geometry
+# NeuroAI
 
-This page introduces the project in a concise, public-facing way.
+Public home for the project collection, starting with **Latent manifold geometry of V1 population codes during natural movie viewing**.
 
-## Project summary
+## Featured project
 
-I analyze Allen Brain Observatory V1 calcium-imaging recordings from mice viewing natural movies. The goal is to understand whether population activity lives on a low-dimensional manifold and how that geometry changes with stimulus structure, representation choice, and neural organization.
+This project analyzes Allen Brain Observatory V1 calcium-imaging recordings from mice viewing natural movies. It asks whether population activity occupies a low-dimensional manifold and how that geometry relates to stimulus structure, representation choice, and neural organization.
 
-## Current status
+The current version is a serious exploratory showcase with real AllenSDK/NWB data, real stimulus features, leakage-aware decoding, manifold geometry summaries, and brain-model alignment analyses.
 
-This is a serious exploratory NeuroAI project with:
+## Snapshot
 
-- real AllenSDK/NWB data
-- real stimulus features extracted from the movie frames
-- leakage-aware decoding and block-wise evaluation
-- manifold geometry summaries
-- brain-model alignment analyses
+| Item | Status |
+|---|---|
+| Processed sessions | 3 |
+| Represented layers | 1 |
+| Represented Cre lines | 1 |
+| Main signal | Held-out-repeat decoding of real natural-movie features |
+| Main caution | Multi-session layer-level claims are not ready yet |
 
-The current repo is strongest as an honest research showcase. The broad multi-session biological claims are still being built up.
+## What you will find
 
-## What is in the repo
+- Data acquisition and validation
+- DeltaF/F preprocessing and trial tensor construction
+- PCA, UMAP, ISOMAP, and CEBRA embeddings
+- Geometry metrics such as speed, curvature, tangling, and intrinsic dimensionality
+- Stimulus decoding and encoding with null controls
+- RSA and CKA comparisons against analytic and deep visual features
+- A read-only publication audit and manuscript planning scaffold
 
-1. Data acquisition and validation
-2. DeltaF/F preprocessing and trial tensor construction
-3. PCA, UMAP, ISOMAP, and CEBRA embeddings
-4. Geometry metrics such as speed, curvature, tangling, and intrinsic dimensionality
-5. Stimulus decoding and encoding with null controls
-6. RSA and CKA comparisons against analytic and deep visual features
-7. A Streamlit app for exploring saved outputs
+## Highlights
 
-## Best starting points
+### Real stimulus features
+
+The analysis uses features extracted from the actual Allen natural movie frames, not synthetic labels.
+
+![Real movie-frame features](assets/04_real_movie_frame_features.png)
+
+### Stimulus and cohort selection
+
+The repository tracks the selected V1 experiments and the current cohort composition.
+
+![Cohort selection](assets/01_selected_experiments_by_cre_depth_layer.png)
+
+### Continuous decoding
+
+The strongest results currently come from continuous feature decoding, especially under repeat-aware and block-aware evaluation.
+
+![Continuous feature decoding](assets/06_continuous_feature_decoding_r2.png)
+
+### Geometry and interpretability
+
+Latent geometry events sometimes align with visually interpretable stimulus segments, but the current evidence is descriptive rather than causal.
+
+![Geometry alignment](assets/09_geometry_stimulus_alignment_heatmap_cebra.png)
+
+## Why this matters
+
+The project combines public neuroscience data, careful controls, and modern representation-learning tools. It is not a pretty-manifold-only story. The site is intended to show both the signal and the limits honestly.
+
+## Project links
 
 - [Main README](../README.md)
-- [Publication audit script](../scripts/publication_audit_readiness.py)
-- [Results tables](../reports/tables/)
-- [Figures](../reports/figures/)
+- [Publication audit](../scripts/publication_audit_readiness.py)
 - [Streamlit app](../app/streamlit_app.py)
+- [Figures](../reports/figures/)
+- [Tables](../reports/tables/)
 
-## Why this project is worth looking at
+## Future NeuroAI projects
 
-The project is interesting because it combines public neuroscience data, careful controls, and modern representation-learning tools. It does not treat a pretty manifold plot as the conclusion. Instead, it asks whether latent geometry, stimulus statistics, and decoding performance remain meaningful under repeat-aware and block-aware evaluation.
-
-## For later GitHub Pages setup
-
-When this repository is published, this page can become the landing page for a simple project site. A good next step would be to add a few of the strongest generated figures to `docs/assets/` and link them here.
+This repository is intended to become a growing home for related NeuroAI projects over time.
 
