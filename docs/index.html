@@ -33,8 +33,8 @@
       color: var(--text);
       font: 16px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       letter-spacing: 0;
+      margin: 0;
     }
-
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     img { max-width: 100%; display: block; }
@@ -45,7 +45,7 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(12px);
-      background: rgba(11, 15, 20, 0.82);
+      background: rgba(11, 15, 20, 0.84);
       border-bottom: 1px solid var(--line);
     }
     .topbar-inner {
@@ -65,8 +65,7 @@
       width: 34px;
       height: 34px;
       border-radius: 11px;
-      background:
-        linear-gradient(135deg, rgba(121, 184, 255, 0.95), rgba(119, 209, 182, 0.92));
+      background: linear-gradient(135deg, rgba(121, 184, 255, 0.95), rgba(119, 209, 182, 0.92));
       box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset;
       flex: 0 0 auto;
     }
@@ -74,7 +73,6 @@
       font-size: 0.98rem;
       line-height: 1.1;
       margin: 0;
-      letter-spacing: 0.01em;
     }
     .brand p {
       margin: 2px 0 0;
@@ -99,16 +97,14 @@
     }
     .topnav a:hover { border-color: var(--line); background: rgba(255,255,255,0.03); text-decoration: none; }
 
-    .hero {
-      padding: 44px 0 24px;
-    }
+    .hero { padding: 44px 0 24px; }
     .hero-grid {
       display: grid;
       grid-template-columns: 1.18fr 0.82fr;
       gap: 22px;
       align-items: stretch;
     }
-    .hero-main, .hero-side, .band, .mini-panel {
+    .panel, .band {
       background: linear-gradient(180deg, rgba(17,24,35,0.96), rgba(13,19,27,0.96));
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -124,8 +120,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(120deg, transparent 0%, rgba(121,184,255,0.06) 50%, transparent 100%);
+      background: linear-gradient(120deg, transparent 0%, rgba(121,184,255,0.06) 50%, transparent 100%);
       transform: translateX(-40%);
       animation: sweep 12s linear infinite;
       pointer-events: none;
@@ -154,14 +149,14 @@
     }
     .hero h2 {
       margin: 0;
-      font-size: clamp(2.1rem, 4.2vw, 4.2rem);
+      font-size: clamp(2rem, 4.1vw, 4.2rem);
       line-height: 0.98;
       max-width: 12ch;
       letter-spacing: 0;
     }
     .hero-lede {
       margin: 18px 0 0;
-      max-width: 62ch;
+      max-width: 64ch;
       color: #d2ddea;
       font-size: 1.02rem;
     }
@@ -195,33 +190,6 @@
       gap: 12px;
       align-content: start;
     }
-    .statgrid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .stat {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 14px;
-      min-height: 94px;
-    }
-    .stat .label {
-      color: var(--muted);
-      font-size: 0.84rem;
-      margin-bottom: 8px;
-    }
-    .stat .value {
-      font-size: 1.52rem;
-      line-height: 1.05;
-      font-weight: 700;
-    }
-    .stat .note {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-top: 8px;
-    }
     .statusbox {
       padding: 14px;
       border-radius: 12px;
@@ -229,52 +197,37 @@
       border: 1px solid rgba(243,183,111,0.22);
       color: #f7dcc0;
     }
+    .paper-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+    }
+    .paper-table th, .paper-table td {
+      border-top: 1px solid var(--line);
+      padding: 9px 10px 9px 0;
+      text-align: left;
+      vertical-align: top;
+    }
+    .paper-table th { color: #f3f7fb; font-weight: 700; width: 38%; }
+    .paper-table tr:first-child th, .paper-table tr:first-child td { border-top: 0; padding-top: 0; }
 
-    .section {
-      padding: 16px 0 36px;
-    }
-    .band {
-      padding: 24px;
-      margin-top: 16px;
-    }
+    .section { padding: 16px 0 34px; }
+    .band { padding: 24px; }
     .band h3 {
       margin: 0 0 10px;
-      font-size: 1.2rem;
+      font-size: 1.18rem;
     }
     .muted { color: var(--muted); }
-    .story-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .story-nav button {
-      appearance: none;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 10px 14px;
-      cursor: pointer;
-      font: inherit;
-    }
-    .story-nav button[aria-pressed="true"] {
-      background: linear-gradient(135deg, rgba(121,184,255,0.22), rgba(119,209,182,0.16));
-      border-color: rgba(121,184,255,0.38);
-    }
-    .story-panel {
+    .grid2 {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 18px;
-      align-items: start;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
-    .mini-panel {
-      padding: 18px;
-    }
-    .mini-panel h4 {
-      margin: 0 0 8px;
-      font-size: 1rem;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
     }
     .figure-card {
       overflow: hidden;
@@ -284,62 +237,19 @@
     }
     .figure-card img {
       width: 100%;
-      height: auto;
-      display: block;
+      aspect-ratio: 1.2 / 0.82;
+      object-fit: cover;
     }
     .figure-caption {
       padding: 12px 14px 14px;
       color: var(--muted);
-      font-size: 0.93rem;
+      font-size: 0.92rem;
     }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 16px;
-    }
-    .gallery-grid .figure-card {
-      height: 100%;
-    }
-    .gallery-grid img {
-      aspect-ratio: 1.2 / 0.82;
-      object-fit: cover;
-    }
-    .timeline {
-      display: grid;
-      gap: 10px;
-    }
-    .step {
-      display: grid;
-      grid-template-columns: 14px 1fr;
-      gap: 12px;
-      align-items: start;
-      padding: 10px 0;
-      border-top: 1px solid var(--line);
-    }
-    .step:first-child { border-top: 0; padding-top: 0; }
-    .dot {
-      width: 12px;
-      height: 12px;
-      margin-top: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(121,184,255,0.12);
-    }
-    .step strong { display: block; margin-bottom: 4px; }
-    .grid2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .list {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--text);
-    }
+    .list { margin: 0; padding-left: 18px; }
     .list li { margin: 8px 0; }
+    .fineprint { color: var(--muted); font-size: 0.92rem; }
     .footer {
-      padding: 30px 0 42px;
+      padding: 20px 0 42px;
       color: var(--muted);
       font-size: 0.94rem;
     }
@@ -354,19 +264,17 @@
     }
 
     @media (max-width: 980px) {
-      .hero-grid, .story-panel, .grid2 { grid-template-columns: 1fr; }
+      .hero-grid, .grid2 { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero-main { min-height: unset; }
       .topbar-inner { align-items: flex-start; flex-direction: column; }
       .topnav { justify-content: flex-start; }
+      .hero-main { min-height: unset; }
     }
-
     @media (max-width: 640px) {
       body { font-size: 15px; }
       .wrap { padding: 0 16px; }
       .hero { padding-top: 28px; }
       .hero-main, .hero-side, .band { padding: 18px; }
-      .statgrid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
       .topnav a { padding: 8px 10px; }
     }
@@ -383,10 +291,12 @@
         </div>
       </div>
       <nav class="topnav" aria-label="Page sections">
-        <a href="#story">Story</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#limits">Limits</a>
-        <a href="#next">Next</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#introduction">Introduction</a>
+        <a href="#methods">Methods</a>
+        <a href="#results">Results</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#availability">Availability</a>
       </nav>
     </div>
   </header>
@@ -394,440 +304,316 @@
   <main>
     <section class="hero">
       <div class="wrap hero-grid">
-        <article class="hero-main reveal">
-          <div class="eyebrow">Public research home</div>
+        <article class="panel hero-main reveal">
+          <div class="eyebrow">Journal-style project page</div>
           <h2>Latent manifold geometry of V1 population codes during natural movie viewing</h2>
           <p class="hero-lede">
-            This project is a careful story about what mouse V1 does when it watches real natural movies:
-            how the population responds, how those responses can be compressed into low-dimensional forms,
-            and where the evidence is strong enough to trust and where it still needs more replication.
+            This website tells the project as a paper: from the biological question, to the dataset and methods,
+            to the results, limitations, and the next steps required before strong biological claims are justified.
           </p>
           <div class="hero-actions">
-            <a class="btn primary" href="#story">Follow the story</a>
-            <a class="btn" href="../README.md">Read the repo README</a>
-            <a class="btn" href="../scripts/publication_audit_readiness.py">See the audit</a>
+            <a class="btn primary" href="#abstract">Read the abstract</a>
+            <a class="btn" href="../README.md">Repo README</a>
+            <a class="btn" href="../scripts/publication_audit_readiness.py">Publication audit</a>
           </div>
         </article>
 
-        <aside class="hero-side reveal">
+        <aside class="panel hero-side reveal">
           <div class="statusbox">
             <strong>Current status</strong><br>
             Strong exploratory signal, but not yet a full multi-session biological claim.
           </div>
-          <div class="statgrid" aria-label="project snapshot">
-            <div class="stat">
-              <div class="label">Processed sessions</div>
-              <div class="value">3</div>
-              <div class="note">Enough to tell the story, not enough for broad generalization.</div>
-            </div>
-            <div class="stat">
-              <div class="label">Main signal</div>
-              <div class="value">Decoding</div>
-              <div class="note">Held-out repeat prediction of real movie features.</div>
-            </div>
-            <div class="stat">
-              <div class="label">Geometry</div>
-              <div class="value">Descriptive</div>
-              <div class="note">Useful, but not yet causal.</div>
-            </div>
-            <div class="stat">
-              <div class="label">Big next step</div>
-              <div class="value">Scale</div>
-              <div class="note">More sessions, more layers, stronger replication.</div>
-            </div>
-          </div>
+          <table class="paper-table" aria-label="Project snapshot">
+            <tr><th>Processed sessions</th><td>3</td></tr>
+            <tr><th>Represented layer / line</th><td>L2/3, Cux2-CreERT2</td></tr>
+            <tr><th>Main signal</th><td>Held-out-repeat decoding of real movie features</td></tr>
+            <tr><th>Main caution</th><td>Not yet enough for broad multi-session claims</td></tr>
+          </table>
         </aside>
       </div>
     </section>
 
-    <section id="story" class="section">
+    <section id="abstract" class="section">
       <div class="wrap">
         <div class="band reveal">
-          <h3>The story</h3>
-          <p class="muted">
-            Use the chapters below to move through the project as a narrative, not just as a stack of results.
+          <h3>Abstract</h3>
+          <p class="muted" style="margin-top:0">
+            Natural vision drives visual cortex with rich temporal structure, but the shape of population geometry
+            during continuous movie viewing remains difficult to characterize. Here I analyze Allen Brain Observatory
+            V1 calcium-imaging recordings during natural movie presentation, extract real stimulus features from the
+            movie frames, and compare low-dimensional neural representations using decoding, encoding, geometry, and
+            brain-model alignment analyses. The strongest current result is that held-out-repeat V1 population activity
+            predicts real movie-derived features such as RMS contrast, luminance variability, spatial-frequency centroid,
+            orientation selectivity, and total spectral power. Latent embeddings such as PCA, UMAP, ISOMAP, and CEBRA
+            produce distinct geometric descriptions of the same data, but their predictive power under block-wise
+            evaluation is modest. Geometry events and trajectory dynamics are interpretable and occasionally align
+            with visually meaningful stimulus segments, yet the evidence is descriptive rather than causal. The
+            project is therefore best read as an honest exploratory NeuroAI study that shows where the signal is real,
+            where it is fragile, and what additional replication is needed before broader biological claims can be defended.
           </p>
+          <table class="paper-table" aria-label="Abstract highlights">
+            <tr><th>Primary contribution</th><td>Real movie-feature prediction from held-out-repeat V1 population activity</td></tr>
+            <tr><th>Secondary contribution</th><td>Comparative analysis of manifold geometry across embeddings</td></tr>
+            <tr><th>Interpretive boundary</th><td>Geometry is descriptive, not causal</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
 
-          <div class="story-nav" role="tablist" aria-label="Narrative chapters">
-            <button class="chapter-btn" data-chapter="why" aria-pressed="true">Why this project exists</button>
-            <button class="chapter-btn" data-chapter="data" aria-pressed="false">What the data gives us</button>
-            <button class="chapter-btn" data-chapter="signal" aria-pressed="false">What the signal says</button>
-            <button class="chapter-btn" data-chapter="limits" aria-pressed="false">Where the evidence stops</button>
-            <button class="chapter-btn" data-chapter="future" aria-pressed="false">What comes next</button>
-          </div>
-
-          <div class="story-panel">
-            <div class="mini-panel">
-              <h4 id="chapter-title">Why this project exists</h4>
-              <p id="chapter-copy" class="muted" style="margin-top:0">
-                Natural movies are messy in exactly the way real neural data are messy. The point of the project is
-                to ask whether V1 population responses still reveal structure when the stimulus is natural,
-                continuous, and temporally autocorrelated.
+    <section id="introduction" class="section">
+      <div class="wrap">
+        <div class="band reveal">
+          <h3>Introduction</h3>
+          <div class="grid2">
+            <div>
+              <p class="muted" style="margin-top:0">
+                The central question is simple: when a mouse views a natural movie, does the population response in
+                V1 occupy a structured low-dimensional manifold, and does that manifold reflect the visual content of
+                the movie itself? The answer matters because natural stimuli are temporally autocorrelated and highly
+                structured, which makes them both scientifically interesting and analytically dangerous.
               </p>
-              <div class="timeline" id="chapter-timeline">
-                <div class="step">
-                  <div class="dot"></div>
-                  <div><strong>Question</strong><span>Does mouse V1 organize natural-movie responses into a low-dimensional manifold?</span></div>
-                </div>
-                <div class="step">
-                  <div class="dot"></div>
-                  <div><strong>Method</strong><span>Use Allen Brain Observatory recordings, real frame features, and repeat-aware controls.</span></div>
-                </div>
-                <div class="step">
-                  <div class="dot"></div>
-                  <div><strong>Principle</strong><span>Keep the evidence stronger than the storytelling.</span></div>
-                </div>
-              </div>
+              <p class="muted">
+                This project sits at the intersection of computational neuroscience and NeuroAI. It is not just a
+                dimensionality-reduction exercise. It is an attempt to connect neural activity, stimulus features,
+                and representational geometry using public data, repeat-aware controls, and cautious interpretation.
+              </p>
             </div>
-
-            <div class="figure-card">
-              <img id="chapter-image" src="assets/04_real_movie_frame_features.png" alt="Project figure">
-              <div class="figure-caption" id="chapter-caption">
-                Real stimulus features extracted from the Allen natural movie frames.
-              </div>
+            <div>
+              <table class="paper-table" aria-label="Research question table">
+                <tr><th>Question</th><td>Does V1 activity during natural movie viewing organize into a low-dimensional manifold?</td></tr>
+                <tr><th>Comparison</th><td>How do PCA, UMAP, ISOMAP, CEBRA, and raw-cell representations differ?</td></tr>
+                <tr><th>Scope</th><td>One processed cohort, with replication work still ongoing</td></tr>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="evidence" class="section">
-      <div class="wrap grid2">
-        <article class="band reveal">
-          <h3>The evidence</h3>
-          <p class="muted">
-            The strongest result so far is not that the manifold is beautiful. It is that held-out-repeat V1 activity
-            can predict real movie-derived features under careful evaluation.
-          </p>
-          <div class="figure-card" style="margin-top:16px">
-            <img src="assets/06_continuous_feature_decoding_r2.png" alt="Continuous decoding figure">
-            <div class="figure-caption">
-              Continuous feature decoding is the project’s clearest positive signal.
+    <section id="methods" class="section">
+      <div class="wrap">
+        <div class="band reveal">
+          <h3>Methods</h3>
+          <div class="grid2">
+            <div>
+              <p class="muted" style="margin-top:0">
+                The workflow begins with Allen Brain Observatory NWB files and proceeds through preprocessing,
+                stimulus-feature extraction, representation learning, and multiple levels of evaluation.
+              </p>
+              <table class="paper-table" aria-label="Methods table">
+                <tr><th>Data</th><td>Allen Brain Observatory V1 calcium imaging during natural movie viewing</td></tr>
+                <tr><th>Preprocessing</th><td>DeltaF/F validation, trial tensor construction, and session-level bookkeeping</td></tr>
+                <tr><th>Features</th><td>Real movie-frame statistics such as RMS contrast, luminance variability, and spatial frequency</td></tr>
+                <tr><th>Evaluation</th><td>Held-out-repeat decoding, block-wise CV, null baselines, geometry summaries, RSA, and CKA</td></tr>
+              </table>
+            </div>
+            <div>
+              <table class="paper-table" aria-label="Cohort table">
+                <tr><th>Processed sessions</th><td>3</td></tr>
+                <tr><th>Represented mice</th><td>3</td></tr>
+                <tr><th>Represented layers</th><td>1 (L2/3)</td></tr>
+                <tr><th>Represented Cre lines</th><td>1 (Cux2-CreERT2)</td></tr>
+                <tr><th>Median cells</th><td>3</td></tr>
+                <tr><th>Population noise ceiling</th><td>0.783</td></tr>
+              </table>
             </div>
           </div>
-        </article>
-
-        <article class="band reveal">
-          <h3>The anatomy of the cohort</h3>
-          <p class="muted">
-            The current public repository is intentionally honest about scope. It has the ingredients of a broader
-            multi-session analysis, but only a narrow cohort is processed right now.
-          </p>
-          <div class="figure-card" style="margin-top:16px">
-            <img src="assets/01_selected_experiments_by_cre_depth_layer.png" alt="Cohort selection figure">
-            <div class="figure-caption">
-              The project currently centers on one represented layer and one Cre line.
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
 
-    <section id="trail" class="section">
+    <section id="results" class="section">
       <div class="wrap">
         <div class="band reveal">
-          <h3>The evidence trail</h3>
+          <h3>Results I: Cohort and stimulus structure</h3>
           <p class="muted">
-            A larger figure set helps the site feel like a real research narrative: the stimulus, the cohort, the
-            preprocessing, the decoding, the geometry, and the interpretation are all visible in sequence.
+            The first result is foundational rather than flashy. The project is built on real stimulus features
+            extracted from the presented movie, and the selected cohort is explicitly recorded and visually summarized.
+          </p>
+          <div class="grid2">
+            <div class="figure-card">
+              <img src="assets/04_real_movie_frame_features.png" alt="Real movie frame features">
+              <div class="figure-caption">Real stimulus features extracted from the Allen natural movie frames.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/01_selected_experiments_by_cre_depth_layer.png" alt="Cohort selection">
+              <div class="figure-caption">The analyzed cohort is small and transparent: three sessions, one layer, one Cre line.</div>
+            </div>
+          </div>
+          <table class="paper-table" aria-label="Cohort and stimulus table" style="margin-top:16px">
+            <tr><th>Cohort</th><td>3 processed VISp sessions from 3 mice</td></tr>
+            <tr><th>Layer / line</th><td>L2/3, Cux2-CreERT2</td></tr>
+            <tr><th>Stimulus</th><td>Natural movie frames from Allen Brain Observatory</td></tr>
+            <tr><th>Real features</th><td>RMS contrast, luminance std, spatial frequency centroid, orientation selectivity, total spectral power</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="band reveal">
+          <h3>Results II: Decoding and representation</h3>
+          <p class="muted">
+            The clearest positive result is that repeat-held-out V1 activity predicts real movie-derived features.
+            Classical and latent representations differ in what they preserve, and the differences matter.
+          </p>
+          <div class="grid2">
+            <div class="figure-card">
+              <img src="assets/06_continuous_feature_decoding_r2.png" alt="Continuous decoding">
+              <div class="figure-caption">Continuous feature decoding is the clearest positive result.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/06_raw_cells_balanced_confident_orientation_repeat_heldout.png" alt="Raw-cell repeat-heldout classification">
+              <div class="figure-caption">Repeat-heldout classification from raw cells remains strong when labels are balanced.</div>
+            </div>
+          </div>
+          <table class="paper-table" aria-label="Best continuous feature decoders" style="margin-top:16px">
+            <tr><th>Target</th><th>Best raw-cell R2</th><th>Notes</th></tr>
+            <tr><td>Total spectral power</td><td>0.563</td><td>Strongest continuous target in the current summary</td></tr>
+            <tr><td>Luminance std</td><td>0.528</td><td>Clear repeat-heldout signal</td></tr>
+            <tr><td>RMS contrast</td><td>0.523</td><td>Consistent with low-level movie structure</td></tr>
+            <tr><td>Orientation selectivity</td><td>0.472</td><td>Useful but more modest</td></tr>
+            <tr><td>Spatial frequency centroid</td><td>0.405</td><td>Moderate predictability</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="band reveal">
+          <h3>Results III: Geometry and interpretability</h3>
+          <p class="muted">
+            Low-dimensional embeddings are not just used as visualizations here. They are treated as objects with
+            measurable geometry, and the project asks whether those geometric events line up with interpretable
+            moments in the movie.
           </p>
           <div class="gallery-grid">
-            <div class="figure-card">
-              <img src="assets/04_population_activity_heatmap.png" alt="Population activity heatmap">
-              <div class="figure-caption">Population activity overview across frames and cells.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/03_population_activity_heatmap.png" alt="Population activity heatmap legacy">
-              <div class="figure-caption">A second activity view that keeps the cohort’s raw structure visible.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/04_population_response_energy.png" alt="Population response energy">
-              <div class="figure-caption">Neural response energy as a bridge to stimulus features.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/04_population_energy_vs_rms_contrast.png" alt="Population energy versus RMS contrast">
-              <div class="figure-caption">Population energy tracks stimulus contrast in a meaningful but not perfect way.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/04_trial_variability_by_frame.png" alt="Trial variability by frame">
-              <div class="figure-caption">Frame-by-frame trial variability shows why repeat-aware evaluation matters.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/05_pca_cumulative_explained_variance.png" alt="PCA cumulative explained variance">
-              <div class="figure-caption">The dimensionality story begins with PCA explained variance.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/05_representation_feature_predictivity_summary.png" alt="Representation feature predictivity summary">
-              <div class="figure-caption">Comparison across representations shows what generalizes and what does not.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/06_raw_cells_balanced_confident_orientation_repeat_heldout.png" alt="Raw cell orientation decoding">
-              <div class="figure-caption">Raw-cell decoding with held-out repeats keeps the main classification result honest.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/06_best_non_null_real_feature_confusion_matrix.png" alt="Best confusion matrix">
-              <div class="figure-caption">A look at which real labels are hardest for the model to separate.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/07_cebra_latent_trajectory.png" alt="CEBRA latent trajectory">
-              <div class="figure-caption">The learned latent trajectory is where geometry and interpretation meet.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/07_cebra_vs_classical_embedding_predictivity.png" alt="CEBRA vs classical embedding predictivity">
-              <div class="figure-caption">CEBRA is compared directly against classical embeddings rather than assumed to win.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/07_drnn_training_curve.png" alt="dRNN training curve">
-              <div class="figure-caption">The temporal model captures structure, but it must still compete with persistence.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/08_best_classification_decoding_results.png" alt="Best classification results">
-              <div class="figure-caption">Classification results are summarized without hiding the baselines.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/08_best_real_feature_decoding_by_embedding.png" alt="Best real feature decoding by embedding">
-              <div class="figure-caption">Different embeddings preserve different kinds of real movie information.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/08_geometry_curvature_by_embedding.png" alt="Geometry curvature by embedding">
-              <div class="figure-caption">Curvature is one of several geometry summaries that remain descriptive, not causal.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/08_geometry_participation_ratio_by_embedding.png" alt="Geometry participation ratio by embedding">
-              <div class="figure-caption">Participation ratio helps compare how compact or diffuse each embedding is.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/09_cebra_speed_timeseries.png" alt="CEBRA speed time series">
-              <div class="figure-caption">The latent trajectory is not static; its dynamics matter.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/09_cebra_curvature_timeseries.png" alt="CEBRA curvature time series">
-              <div class="figure-caption">Curvature spikes show when the manifold changes direction sharply.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/09_cebra_tangling_timeseries.png" alt="CEBRA tangling time series">
-              <div class="figure-caption">Tangling is a useful warning sign for complex local geometry.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/09_event_triggered_context_high_speed_cebra.png" alt="High-speed event context">
-              <div class="figure-caption">Event-triggered views make the geometry easier to interpret in context.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/09_event_triggered_context_high_curvature_cebra.png" alt="High-curvature event context">
-              <div class="figure-caption">High-curvature events often sit near visually recognizable movie moments.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/09_event_triggered_context_high_tangling_cebra.png" alt="High-tangling event context">
-              <div class="figure-caption">High-tangling events are interpreted cautiously and descriptively.</div>
-            </div>
-            <div class="figure-card">
-              <img src="assets/09_movie_frames_at_top_geometry_events_cebra.png" alt="Movie frames at top geometry events">
-              <div class="figure-caption">The strongest interpretability figure brings the movie frames back into view.</div>
-            </div>
+            <div class="figure-card"><img src="assets/07_cebra_latent_trajectory.png" alt="CEBRA latent trajectory"><div class="figure-caption">The CEBRA trajectory is the main geometric object.</div></div>
+            <div class="figure-card"><img src="assets/07_cebra_vs_classical_embedding_predictivity.png" alt="CEBRA vs classical predictivity"><div class="figure-caption">CEBRA is compared directly with classical embeddings.</div></div>
+            <div class="figure-card"><img src="assets/08_geometry_participation_ratio_by_embedding.png" alt="Participation ratio by embedding"><div class="figure-caption">Participation ratio across embeddings.</div></div>
+            <div class="figure-card"><img src="assets/08_geometry_curvature_by_embedding.png" alt="Curvature by embedding"><div class="figure-caption">Curvature differs substantially across representations.</div></div>
+            <div class="figure-card"><img src="assets/09_cebra_speed_timeseries.png" alt="Speed time series"><div class="figure-caption">Speed time series.</div></div>
+            <div class="figure-card"><img src="assets/09_cebra_curvature_timeseries.png" alt="Curvature time series"><div class="figure-caption">Curvature time series.</div></div>
+            <div class="figure-card"><img src="assets/09_cebra_tangling_timeseries.png" alt="Tangling time series"><div class="figure-caption">Tangling time series.</div></div>
+            <div class="figure-card"><img src="assets/09_event_triggered_context_high_speed_cebra.png" alt="High-speed event context"><div class="figure-caption">Event-triggered views make the geometry easier to interpret in context.</div></div>
+            <div class="figure-card"><img src="assets/09_event_triggered_context_high_curvature_cebra.png" alt="High-curvature event context"><div class="figure-caption">High-curvature events often sit near visually recognizable movie moments.</div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="plates" class="section">
+    <section id="supplement" class="section">
       <div class="wrap">
         <div class="band reveal">
-          <h3>Additional plates</h3>
+          <h3>Supplementary evidence trail</h3>
           <p class="muted">
-            These figures are smaller pieces of the same story: balance checks, trajectory views, summary plots,
-            and technical controls that make the stronger narrative trustworthy.
+            These figures fill in the steps between the main results: balance checks, representation summaries,
+            and the technical control plots that make the story scientifically reliable.
           </p>
           <div class="gallery-grid">
             <div class="figure-card"><img src="assets/04_confident_orientation_class_balance.png" alt="Confident orientation balance"><div class="figure-caption">Confident orientation balance.</div></div>
             <div class="figure-card"><img src="assets/04_dominant_orientation_class_balance.png" alt="Dominant orientation balance"><div class="figure-caption">Dominant orientation class balance.</div></div>
             <div class="figure-card"><img src="assets/04_orientation_class_balance.png" alt="Orientation class balance"><div class="figure-caption">Orientation class balance across the movie.</div></div>
-            <div class="figure-card"><img src="assets/04_example_movie_frames_by_orientation_class.png" alt="Example movie frames by orientation class"><div class="figure-caption">Example movie frames by orientation class.</div></div>
-            <div class="figure-card"><img src="assets/04_example_movie_frames_by_orientation_class_spread.png" alt="Orientation frame spread"><div class="figure-caption">Spread of frames by orientation class.</div></div>
+            <div class="figure-card"><img src="assets/04_population_activity_heatmap.png" alt="Population activity heatmap"><div class="figure-caption">Population activity overview across frames and cells.</div></div>
             <div class="figure-card"><img src="assets/04_population_activity_heatmap_robust.png" alt="Robust population heatmap"><div class="figure-caption">Robust population heatmap.</div></div>
+            <div class="figure-card"><img src="assets/04_population_energy_vs_rms_contrast.png" alt="Population energy versus RMS contrast"><div class="figure-caption">Population energy versus RMS contrast.</div></div>
+            <div class="figure-card"><img src="assets/04_population_response_energy.png" alt="Population response energy"><div class="figure-caption">Neural response energy as a bridge to stimulus features.</div></div>
+            <div class="figure-card"><img src="assets/04_trial_variability_by_frame.png" alt="Trial variability by frame"><div class="figure-caption">Frame-by-frame trial variability shows why repeat-aware evaluation matters.</div></div>
             <div class="figure-card"><img src="assets/04_zscored_population_energy_and_movie_features.png" alt="Z-scored population energy and features"><div class="figure-caption">Population energy and movie features on a shared scale.</div></div>
-            <div class="figure-card"><img src="assets/05_pca_latent_trajectory_frame_index.png" alt="PCA trajectory frame index"><div class="figure-caption">PCA trajectory colored by frame index.</div></div>
-            <div class="figure-card"><img src="assets/05_umap_latent_trajectory_frame_index.png" alt="UMAP trajectory frame index"><div class="figure-caption">UMAP trajectory colored by frame index.</div></div>
-            <div class="figure-card"><img src="assets/05_isomap_latent_trajectory_frame_index.png" alt="ISOMAP trajectory frame index"><div class="figure-caption">ISOMAP trajectory colored by frame index.</div></div>
-            <div class="figure-card"><img src="assets/05_pca_latent_trajectory_rms_contrast.png" alt="PCA trajectory RMS contrast"><div class="figure-caption">PCA trajectory versus RMS contrast.</div></div>
-            <div class="figure-card"><img src="assets/05_umap_latent_trajectory_rms_contrast.png" alt="UMAP trajectory RMS contrast"><div class="figure-caption">UMAP trajectory versus RMS contrast.</div></div>
-            <div class="figure-card"><img src="assets/05_isomap_latent_trajectory_rms_contrast.png" alt="ISOMAP trajectory RMS contrast"><div class="figure-caption">ISOMAP trajectory versus RMS contrast.</div></div>
-            <div class="figure-card"><img src="assets/07_cebra_latent_trajectory_rms_contrast.png" alt="CEBRA RMS contrast trajectory"><div class="figure-caption">CEBRA trajectory colored by RMS contrast.</div></div>
-            <div class="figure-card"><img src="assets/07_cebra_latent_trajectory_spatial_frequency_centroid.png" alt="CEBRA spatial frequency trajectory"><div class="figure-caption">CEBRA trajectory colored by spatial frequency.</div></div>
-            <div class="figure-card"><img src="assets/07_cebra_latent_trajectory_orientation_selectivity.png" alt="CEBRA orientation selectivity trajectory"><div class="figure-caption">CEBRA trajectory colored by orientation selectivity.</div></div>
-            <div class="figure-card"><img src="assets/07_cebra_latent_trajectory_luminance_std.png" alt="CEBRA luminance trajectory"><div class="figure-caption">CEBRA trajectory colored by luminance variability.</div></div>
-            <div class="figure-card"><img src="assets/08_cebra_vs_classical_embedding_summary.png" alt="CEBRA versus classical embedding summary"><div class="figure-caption">CEBRA versus classical embeddings.</div></div>
+            <div class="figure-card"><img src="assets/05_pca_cumulative_explained_variance.png" alt="PCA cumulative explained variance"><div class="figure-caption">PCA cumulative explained variance.</div></div>
+            <div class="figure-card"><img src="assets/05_representation_feature_predictivity_summary.png" alt="Representation feature predictivity summary"><div class="figure-caption">Comparison across representations shows what generalizes and what does not.</div></div>
+            <div class="figure-card"><img src="assets/08_best_classification_decoding_results.png" alt="Best classification results"><div class="figure-caption">Classification results are summarized without hiding the baselines.</div></div>
+            <div class="figure-card"><img src="assets/08_best_real_feature_decoding_by_embedding.png" alt="Best real feature decoding by embedding"><div class="figure-caption">Different embeddings preserve different kinds of real movie information.</div></div>
+            <div class="figure-card"><img src="assets/08_cebra_vs_classical_embedding_summary.png" alt="CEBRA vs classical embedding summary"><div class="figure-caption">CEBRA versus classical embeddings.</div></div>
             <div class="figure-card"><img src="assets/08_continuous_feature_decoding_r2.png" alt="Continuous decoding R2"><div class="figure-caption">Continuous feature decoding summary.</div></div>
             <div class="figure-card"><img src="assets/08_curvature_vs_decoding_accuracy.png" alt="Curvature versus decoding accuracy"><div class="figure-caption">Geometry versus decoding accuracy.</div></div>
             <div class="figure-card"><img src="assets/09_cebra_speed_timeseries_clipped_p99.png" alt="Speed clipped time series"><div class="figure-caption">Speed time series clipped at the 99th percentile.</div></div>
             <div class="figure-card"><img src="assets/09_cebra_curvature_timeseries_clipped_p99.png" alt="Curvature clipped time series"><div class="figure-caption">Curvature time series clipped at the 99th percentile.</div></div>
             <div class="figure-card"><img src="assets/09_cebra_tangling_timeseries_clipped_p99.png" alt="Tangling clipped time series"><div class="figure-caption">Tangling time series clipped at the 99th percentile.</div></div>
+            <div class="figure-card"><img src="assets/09_movie_frames_at_top_geometry_events_cebra.png" alt="Movie frames at top geometry events"><div class="figure-caption">The strongest interpretability figure brings the movie frames back into view.</div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="limits" class="section">
+    <section id="discussion" class="section">
       <div class="wrap">
         <div class="band reveal">
-          <h3>Where the evidence stops</h3>
-          <div class="grid2" style="margin-top:14px">
+          <h3>Discussion</h3>
+          <div class="grid2">
             <div>
               <p class="muted" style="margin-top:0">
-                This is where the project earns trust: it says what it does not yet know.
+                The project’s main lesson is nuanced rather than triumphant. V1 carries interpretable information
+                about natural movie structure, but the most visually striking geometric descriptions are not enough
+                on their own to support broad biological claims.
               </p>
               <ul class="list">
-                <li>It does not yet support broad multi-session replication claims.</li>
-                <li>It does not yet justify strong layer-specific biological conclusions.</li>
-                <li>It does not yet establish a cross-session shared manifold.</li>
-                <li>It treats geometry as descriptive unless it survives nulls and generalization.</li>
+                <li>The strongest claim is a decoding result on real movie features.</li>
+                <li>Geometry is valuable, but descriptive until it generalizes robustly.</li>
+                <li>The current cohort is too small for broad replication claims.</li>
+                <li>The right next step is scale, not stronger rhetoric.</li>
               </ul>
             </div>
             <div class="figure-card">
               <img src="assets/09_geometry_stimulus_alignment_heatmap_cebra.png" alt="Geometry alignment figure">
-              <div class="figure-caption">
-                Geometry and stimulus alignment are interesting, but still modest and interpretive.
-              </div>
+              <div class="figure-caption">Geometry and stimulus alignment are informative, but still modest and interpretive.</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="next" class="section">
+    <section id="availability" class="section">
       <div class="wrap">
         <div class="band reveal">
-          <h3>What comes next</h3>
-          <div class="grid2" style="margin-top:14px">
+          <h3>Data, code, and future work</h3>
+          <div class="grid2">
             <div>
               <p class="muted" style="margin-top:0">
-                The next chapter is scale: more sessions, more layers, more rigorous cross-session comparisons,
-                and a deep-model alignment story that is strong enough to stand on its own.
+                The repository is public and reproducible. The code, notebooks, figures, tables, and audit scripts
+                are all organized so that a reader can follow the same path the project took.
               </p>
               <ul class="list">
-                <li>Expand the cohort beyond the current three sessions.</li>
-                <li>Test whether the geometry survives cell-count matching and reliability correction.</li>
-                <li>Build the NeuroAI repo into a larger project hub over time.</li>
-                <li>Keep the website readable, scientific, and honest.</li>
+                <li>Public repository: <code>NeuroAI</code></li>
+                <li>Project site: <code>latent-manifold-v1-natural-movies</code></li>
+                <li>Primary audit path: publication readiness script and report tables</li>
+                <li>Future work: expand to more sessions, more layers, and stronger model comparisons</li>
               </ul>
             </div>
             <div class="figure-card">
               <img src="assets/04_real_movie_frame_features.png" alt="Natural movie frame features">
-              <div class="figure-caption">
-                The project begins with the movie itself, not with a convenient abstraction.
-              </div>
+              <div class="figure-caption">The project begins with the movie itself, not with a convenient abstraction.</div>
             </div>
           </div>
-        </div>
 
-        <div class="footer">
-          <p>
-            <strong>Related links:</strong>
-            <a href="../README.md">README</a> ·
-            <a href="../scripts/publication_audit_readiness.py">publication audit</a> ·
-            <a href="../app/streamlit_app.py">Streamlit app</a> ·
-            <a href="../reports/figures/">figures</a> ·
-            <a href="../reports/tables/">tables</a>
-          </p>
+          <div class="footer">
+            <p>
+              <strong>Related links:</strong>
+              <a href="../README.md">README</a> ·
+              <a href="../scripts/publication_audit_readiness.py">publication audit</a> ·
+              <a href="../app/streamlit_app.py">Streamlit app</a> ·
+              <a href="../reports/figures/">figures</a> ·
+              <a href="../reports/tables/">tables</a>
+            </p>
+            <p class="fineprint">
+              This page is intentionally structured like a manuscript: abstract, introduction, methods, results,
+              discussion, and availability. The motion is subtle so the evidence stays central.
+            </p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <script>
-    const chapters = {
-      why: {
-        title: 'Why this project exists',
-        copy: 'Natural movies are messy in exactly the way real neural data are messy. The point of the project is to ask whether V1 population responses still reveal structure when the stimulus is natural, continuous, and temporally autocorrelated.',
-        image: 'assets/04_real_movie_frame_features.png',
-        caption: 'Real stimulus features extracted from the Allen natural movie frames.',
-        steps: [
-          ['Question', 'Does mouse V1 organize natural-movie responses into a low-dimensional manifold?'],
-          ['Method', 'Use Allen Brain Observatory recordings, real frame features, and repeat-aware controls.'],
-          ['Principle', 'Keep the evidence stronger than the storytelling.']
-        ]
-      },
-      data: {
-        title: 'What the data gives us',
-        copy: 'The project starts from public Allen Brain Observatory recordings, then builds trial tensors, real stimulus features, and reusable tables that make the analysis auditable.',
-        image: 'assets/01_selected_experiments_by_cre_depth_layer.png',
-        caption: 'The current public cohort is narrow but real, with explicit session selection and provenance.',
-        steps: [
-          ['Source', 'Allen Brain Observatory 2-photon calcium imaging'],
-          ['Inputs', 'NWB files, stimulus templates, session metadata'],
-          ['Constraint', 'The published story must match the data story']
-        ]
-      },
-      signal: {
-        title: 'What the signal says',
-        copy: 'The clearest positive finding is that held-out-repeat population activity predicts real movie-derived features. That is a meaningful result, even if the larger biological generalization is still in progress.',
-        image: 'assets/06_continuous_feature_decoding_r2.png',
-        caption: 'Continuous feature decoding is the strongest result currently in hand.',
-        steps: [
-          ['Strength', 'Continuous feature decoding is more convincing than imbalanced classification'],
-          ['Controls', 'Repeat-aware splits and null baselines reduce leakage'],
-          ['Interpretation', 'This is a real signal, not a finished theory']
-        ]
-      },
-      limits: {
-        title: 'Where the evidence stops',
-        copy: 'The project is careful about scope. Geometry events and alignment plots are interesting, but they do not yet justify big claims about a universal V1 manifold.',
-        image: 'assets/09_geometry_stimulus_alignment_heatmap_cebra.png',
-        caption: 'Geometry and stimulus alignment are informative, but still descriptive.',
-        steps: [
-          ['Not ready', 'Multi-session replication'],
-          ['Not ready', 'Layer-specific biological conclusions'],
-          ['Not ready', 'Cross-session shared manifold']
-        ]
-      },
-      future: {
-        title: 'What comes next',
-        copy: 'The next chapter is scale and comparison: more sessions, more layers, deeper alignment, and a broader NeuroAI project hub that can grow over time.',
-        image: 'assets/04_real_movie_frame_features.png',
-        caption: 'The story begins with the movie itself and grows from there.',
-        steps: [
-          ['Scale up', 'More sessions and more layers'],
-          ['Deepen', 'Cross-session and model alignment'],
-          ['Expand', 'NeuroAI as a public project home']
-        ]
-      }
-    };
-
-    const titleEl = document.getElementById('chapter-title');
-    const copyEl = document.getElementById('chapter-copy');
-    const imgEl = document.getElementById('chapter-image');
-    const capEl = document.getElementById('chapter-caption');
-    const timeline = document.getElementById('chapter-timeline');
-    const buttons = Array.from(document.querySelectorAll('.chapter-btn'));
-
-    function renderChapter(name) {
-      const c = chapters[name];
-      titleEl.textContent = c.title;
-      copyEl.textContent = c.copy;
-      imgEl.src = c.image;
-      imgEl.alt = c.title;
-      capEl.textContent = c.caption;
-      timeline.innerHTML = c.steps.map(([a, b]) => `
-        <div class="step">
-          <div class="dot"></div>
-          <div><strong>${a}</strong><span>${b}</span></div>
-        </div>
-      `).join('');
-      buttons.forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.chapter === name)));
-    }
-
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => renderChapter(btn.dataset.chapter));
-    });
-
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       }
     }, { threshold: 0.18 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    renderChapter('why');
   </script>
 </body>
 </html>
