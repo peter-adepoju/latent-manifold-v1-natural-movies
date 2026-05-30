@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NeuroAI project collection: latent manifold geometry of V1 population codes during natural movie viewing.">
+  <title>NeuroAI | V1 Natural Movie Manifold Geometry</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f14;
+      --panel: #111823;
+      --panel-2: #162130;
+      --text: #e8eef7;
+      --muted: #9fb0c2;
+      --line: rgba(162, 182, 205, 0.18);
+      --accent: #79b8ff;
+      --accent-2: #77d1b6;
+      --warn: #f3b76f;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
+      --radius: 14px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(15, 21, 29, 0.9), rgba(11, 15, 20, 1)),
+        radial-gradient(circle at top left, rgba(121, 184, 255, 0.12), transparent 32%),
+        radial-gradient(circle at top right, rgba(119, 209, 182, 0.10), transparent 26%);
+      color: var(--text);
+      font: 16px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 22px; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 20, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      background:
+        linear-gradient(135deg, rgba(121, 184, 255, 0.95), rgba(119, 209, 182, 0.92));
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset;
+      flex: 0 0 auto;
+    }
+    .brand h1 {
+      font-size: 0.98rem;
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .topnav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 0.93rem;
+    }
+    .topnav a {
+      color: var(--text);
+      padding: 8px 11px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+    }
+    .topnav a:hover { border-color: var(--line); background: rgba(255,255,255,0.03); text-decoration: none; }
+
+    .hero {
+      padding: 44px 0 24px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .hero-main, .hero-side, .band, .mini-panel {
+      background: linear-gradient(180deg, rgba(17,24,35,0.96), rgba(13,19,27,0.96));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      min-height: 420px;
+    }
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(121,184,255,0.06) 50%, transparent 100%);
+      transform: translateX(-40%);
+      animation: sweep 12s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes sweep {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(60%); }
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-2);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 18px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 6px rgba(119, 209, 182, 0.12);
+    }
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(2.1rem, 4.2vw, 4.2rem);
+      line-height: 0.98;
+      max-width: 12ch;
+      letter-spacing: 0;
+    }
+    .hero-lede {
+      margin: 18px 0 0;
+      max-width: 62ch;
+      color: #d2ddea;
+      font-size: 1.02rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 15px;
+      border-radius: 11px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(121,184,255,0.22), rgba(119,209,182,0.18));
+      border-color: rgba(121,184,255,0.35);
+    }
+    .btn:hover { text-decoration: none; transform: translateY(-1px); }
+
+    .hero-side {
+      padding: 22px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+    .statgrid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      min-height: 94px;
+    }
+    .stat .label {
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-bottom: 8px;
+    }
+    .stat .value {
+      font-size: 1.52rem;
+      line-height: 1.05;
+      font-weight: 700;
+    }
+    .stat .note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+    .statusbox {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(243,183,111,0.08);
+      border: 1px solid rgba(243,183,111,0.22);
+      color: #f7dcc0;
+    }
+
+    .section {
+      padding: 16px 0 36px;
+    }
+    .band {
+      padding: 24px;
+      margin-top: 16px;
+    }
+    .band h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+    .muted { color: var(--muted); }
+    .story-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .story-nav button {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font: inherit;
+    }
+    .story-nav button[aria-pressed="true"] {
+      background: linear-gradient(135deg, rgba(121,184,255,0.22), rgba(119,209,182,0.16));
+      border-color: rgba(121,184,255,0.38);
+    }
+    .story-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+      align-items: start;
+    }
+    .mini-panel {
+      padding: 18px;
+    }
+    .mini-panel h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+    .figure-card {
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #0d1218;
+    }
+    .figure-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .figure-caption {
+      padding: 12px 14px 14px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+    .timeline {
+      display: grid;
+      gap: 10px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 14px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+    .step:first-child { border-top: 0; padding-top: 0; }
+    .dot {
+      width: 12px;
+      height: 12px;
+      margin-top: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(121,184,255,0.12);
+    }
+    .step strong { display: block; margin-bottom: 4px; }
+    .grid2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+    }
+    .list li { margin: 8px 0; }
+    .footer {
+      padding: 30px 0 42px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .story-panel, .grid2 { grid-template-columns: 1fr; }
+      .hero-main { min-height: unset; }
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+      .topnav { justify-content: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      body { font-size: 15px; }
+      .wrap { padding: 0 16px; }
+      .hero { padding-top: 28px; }
+      .hero-main, .hero-side, .band { padding: 18px; }
+      .statgrid { grid-template-columns: 1fr; }
+      .topnav a { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h1>NeuroAI</h1>
+          <p>V1 natural movie manifold geometry</p>
+        </div>
+      </div>
+      <nav class="topnav" aria-label="Page sections">
+        <a href="#story">Story</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#limits">Limits</a>
+        <a href="#next">Next</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <article class="hero-main reveal">
+          <div class="eyebrow">Public research home</div>
+          <h2>Latent manifold geometry of V1 population codes during natural movie viewing</h2>
+          <p class="hero-lede">
+            This project is a careful story about what mouse V1 does when it watches real natural movies:
+            how the population responds, how those responses can be compressed into low-dimensional forms,
+            and where the evidence is strong enough to trust and where it still needs more replication.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#story">Follow the story</a>
+            <a class="btn" href="../README.md">Read the repo README</a>
+            <a class="btn" href="../scripts/publication_audit_readiness.py">See the audit</a>
+          </div>
+        </article>
+
+        <aside class="hero-side reveal">
+          <div class="statusbox">
+            <strong>Current status</strong><br>
+            Strong exploratory signal, but not yet a full multi-session biological claim.
+          </div>
+          <div class="statgrid" aria-label="project snapshot">
+            <div class="stat">
+              <div class="label">Processed sessions</div>
+              <div class="value">3</div>
+              <div class="note">Enough to tell the story, not enough for broad generalization.</div>
+            </div>
+            <div class="stat">
+              <div class="label">Main signal</div>
+              <div class="value">Decoding</div>
+              <div class="note">Held-out repeat prediction of real movie features.</div>
+            </div>
+            <div class="stat">
+              <div class="label">Geometry</div>
+              <div class="value">Descriptive</div>
+              <div class="note">Useful, but not yet causal.</div>
+            </div>
+            <div class="stat">
+              <div class="label">Big next step</div>
+              <div class="value">Scale</div>
+              <div class="note">More sessions, more layers, stronger replication.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="story" class="section">
+      <div class="wrap">
+        <div class="band reveal">
+          <h3>The story</h3>
+          <p class="muted">
+            Use the chapters below to move through the project as a narrative, not just as a stack of results.
+          </p>
+
+          <div class="story-nav" role="tablist" aria-label="Narrative chapters">
+            <button class="chapter-btn" data-chapter="why" aria-pressed="true">Why this project exists</button>
+            <button class="chapter-btn" data-chapter="data" aria-pressed="false">What the data gives us</button>
+            <button class="chapter-btn" data-chapter="signal" aria-pressed="false">What the signal says</button>
+            <button class="chapter-btn" data-chapter="limits" aria-pressed="false">Where the evidence stops</button>
+            <button class="chapter-btn" data-chapter="future" aria-pressed="false">What comes next</button>
+          </div>
+
+          <div class="story-panel">
+            <div class="mini-panel">
+              <h4 id="chapter-title">Why this project exists</h4>
+              <p id="chapter-copy" class="muted" style="margin-top:0">
+                Natural movies are messy in exactly the way real neural data are messy. The point of the project is
+                to ask whether V1 population responses still reveal structure when the stimulus is natural,
+                continuous, and temporally autocorrelated.
+              </p>
+              <div class="timeline" id="chapter-timeline">
+                <div class="step">
+                  <div class="dot"></div>
+                  <div><strong>Question</strong><span>Does mouse V1 organize natural-movie responses into a low-dimensional manifold?</span></div>
+                </div>
+                <div class="step">
+                  <div class="dot"></div>
+                  <div><strong>Method</strong><span>Use Allen Brain Observatory recordings, real frame features, and repeat-aware controls.</span></div>
+                </div>
+                <div class="step">
+                  <div class="dot"></div>
+                  <div><strong>Principle</strong><span>Keep the evidence stronger than the storytelling.</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="figure-card">
+              <img id="chapter-image" src="assets/04_real_movie_frame_features.png" alt="Project figure">
+              <div class="figure-caption" id="chapter-caption">
+                Real stimulus features extracted from the Allen natural movie frames.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidence" class="section">
+      <div class="wrap grid2">
+        <article class="band reveal">
+          <h3>The evidence</h3>
+          <p class="muted">
+            The strongest result so far is not that the manifold is beautiful. It is that held-out-repeat V1 activity
+            can predict real movie-derived features under careful evaluation.
+          </p>
+          <div class="figure-card" style="margin-top:16px">
+            <img src="assets/06_continuous_feature_decoding_r2.png" alt="Continuous decoding figure">
+            <div class="figure-caption">
+              Continuous feature decoding is the project’s clearest positive signal.
+            </div>
+          </div>
+        </article>
+
+        <article class="band reveal">
+          <h3>The anatomy of the cohort</h3>
+          <p class="muted">
+            The current public repository is intentionally honest about scope. It has the ingredients of a broader
+            multi-session analysis, but only a narrow cohort is processed right now.
+          </p>
+          <div class="figure-card" style="margin-top:16px">
+            <img src="assets/01_selected_experiments_by_cre_depth_layer.png" alt="Cohort selection figure">
+            <div class="figure-caption">
+              The project currently centers on one represented layer and one Cre line.
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="limits" class="section">
+      <div class="wrap">
+        <div class="band reveal">
+          <h3>Where the evidence stops</h3>
+          <div class="grid2" style="margin-top:14px">
+            <div>
+              <p class="muted" style="margin-top:0">
+                This is where the project earns trust: it says what it does not yet know.
+              </p>
+              <ul class="list">
+                <li>It does not yet support broad multi-session replication claims.</li>
+                <li>It does not yet justify strong layer-specific biological conclusions.</li>
+                <li>It does not yet establish a cross-session shared manifold.</li>
+                <li>It treats geometry as descriptive unless it survives nulls and generalization.</li>
+              </ul>
+            </div>
+            <div class="figure-card">
+              <img src="assets/09_geometry_stimulus_alignment_heatmap_cebra.png" alt="Geometry alignment figure">
+              <div class="figure-caption">
+                Geometry and stimulus alignment are interesting, but still modest and interpretive.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="next" class="section">
+      <div class="wrap">
+        <div class="band reveal">
+          <h3>What comes next</h3>
+          <div class="grid2" style="margin-top:14px">
+            <div>
+              <p class="muted" style="margin-top:0">
+                The next chapter is scale: more sessions, more layers, more rigorous cross-session comparisons,
+                and a deep-model alignment story that is strong enough to stand on its own.
+              </p>
+              <ul class="list">
+                <li>Expand the cohort beyond the current three sessions.</li>
+                <li>Test whether the geometry survives cell-count matching and reliability correction.</li>
+                <li>Build the NeuroAI repo into a larger project hub over time.</li>
+                <li>Keep the website readable, scientific, and honest.</li>
+              </ul>
+            </div>
+            <div class="figure-card">
+              <img src="assets/04_real_movie_frame_features.png" alt="Natural movie frame features">
+              <div class="figure-caption">
+                The project begins with the movie itself, not with a convenient abstraction.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p>
+            <strong>Related links:</strong>
+            <a href="../README.md">README</a> ·
+            <a href="../scripts/publication_audit_readiness.py">publication audit</a> ·
+            <a href="../app/streamlit_app.py">Streamlit app</a> ·
+            <a href="../reports/figures/">figures</a> ·
+            <a href="../reports/tables/">tables</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const chapters = {
+      why: {
+        title: 'Why this project exists',
+        copy: 'Natural movies are messy in exactly the way real neural data are messy. The point of the project is to ask whether V1 population responses still reveal structure when the stimulus is natural, continuous, and temporally autocorrelated.',
+        image: 'assets/04_real_movie_frame_features.png',
+        caption: 'Real stimulus features extracted from the Allen natural movie frames.',
+        steps: [
+          ['Question', 'Does mouse V1 organize natural-movie responses into a low-dimensional manifold?'],
+          ['Method', 'Use Allen Brain Observatory recordings, real frame features, and repeat-aware controls.'],
+          ['Principle', 'Keep the evidence stronger than the storytelling.']
+        ]
+      },
+      data: {
+        title: 'What the data gives us',
+        copy: 'The project starts from public Allen Brain Observatory recordings, then builds trial tensors, real stimulus features, and reusable tables that make the analysis auditable.',
+        image: 'assets/01_selected_experiments_by_cre_depth_layer.png',
+        caption: 'The current public cohort is narrow but real, with explicit session selection and provenance.',
+        steps: [
+          ['Source', 'Allen Brain Observatory 2-photon calcium imaging'],
+          ['Inputs', 'NWB files, stimulus templates, session metadata'],
+          ['Constraint', 'The published story must match the data story']
+        ]
+      },
+      signal: {
+        title: 'What the signal says',
+        copy: 'The clearest positive finding is that held-out-repeat population activity predicts real movie-derived features. That is a meaningful result, even if the larger biological generalization is still in progress.',
+        image: 'assets/06_continuous_feature_decoding_r2.png',
+        caption: 'Continuous feature decoding is the strongest result currently in hand.',
+        steps: [
+          ['Strength', 'Continuous feature decoding is more convincing than imbalanced classification'],
+          ['Controls', 'Repeat-aware splits and null baselines reduce leakage'],
+          ['Interpretation', 'This is a real signal, not a finished theory']
+        ]
+      },
+      limits: {
+        title: 'Where the evidence stops',
+        copy: 'The project is careful about scope. Geometry events and alignment plots are interesting, but they do not yet justify big claims about a universal V1 manifold.',
+        image: 'assets/09_geometry_stimulus_alignment_heatmap_cebra.png',
+        caption: 'Geometry and stimulus alignment are informative, but still descriptive.',
+        steps: [
+          ['Not ready', 'Multi-session replication'],
+          ['Not ready', 'Layer-specific biological conclusions'],
+          ['Not ready', 'Cross-session shared manifold']
+        ]
+      },
+      future: {
+        title: 'What comes next',
+        copy: 'The next chapter is scale and comparison: more sessions, more layers, deeper alignment, and a broader NeuroAI project hub that can grow over time.',
+        image: 'assets/04_real_movie_frame_features.png',
+        caption: 'The story begins with the movie itself and grows from there.',
+        steps: [
+          ['Scale up', 'More sessions and more layers'],
+          ['Deepen', 'Cross-session and model alignment'],
+          ['Expand', 'NeuroAI as a public project home']
+        ]
+      }
+    };
+
+    const titleEl = document.getElementById('chapter-title');
+    const copyEl = document.getElementById('chapter-copy');
+    const imgEl = document.getElementById('chapter-image');
+    const capEl = document.getElementById('chapter-caption');
+    const timeline = document.getElementById('chapter-timeline');
+    const buttons = Array.from(document.querySelectorAll('.chapter-btn'));
+
+    function renderChapter(name) {
+      const c = chapters[name];
+      titleEl.textContent = c.title;
+      copyEl.textContent = c.copy;
+      imgEl.src = c.image;
+      imgEl.alt = c.title;
+      capEl.textContent = c.caption;
+      timeline.innerHTML = c.steps.map(([a, b]) => `
+        <div class="step">
+          <div class="dot"></div>
+          <div><strong>${a}</strong><span>${b}</span></div>
+        </div>
+      `).join('');
+      buttons.forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.chapter === name)));
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => renderChapter(btn.dataset.chapter));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      }
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    renderChapter('why');
+  </script>
+</body>
+</html>
