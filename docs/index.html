@@ -292,6 +292,19 @@
       color: var(--muted);
       font-size: 0.93rem;
     }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .gallery-grid .figure-card {
+      height: 100%;
+    }
+    .gallery-grid img {
+      aspect-ratio: 1.2 / 0.82;
+      object-fit: cover;
+    }
     .timeline {
       display: grid;
       gap: 10px;
@@ -342,6 +355,7 @@
 
     @media (max-width: 980px) {
       .hero-grid, .story-panel, .grid2 { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .hero-main { min-height: unset; }
       .topbar-inner { align-items: flex-start; flex-direction: column; }
       .topnav { justify-content: flex-start; }
@@ -353,6 +367,7 @@
       .hero { padding-top: 28px; }
       .hero-main, .hero-side, .band { padding: 18px; }
       .statgrid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
       .topnav a { padding: 8px 10px; }
     }
   </style>
@@ -505,6 +520,149 @@
             </div>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section id="trail" class="section">
+      <div class="wrap">
+        <div class="band reveal">
+          <h3>The evidence trail</h3>
+          <p class="muted">
+            A larger figure set helps the site feel like a real research narrative: the stimulus, the cohort, the
+            preprocessing, the decoding, the geometry, and the interpretation are all visible in sequence.
+          </p>
+          <div class="gallery-grid">
+            <div class="figure-card">
+              <img src="assets/04_population_activity_heatmap.png" alt="Population activity heatmap">
+              <div class="figure-caption">Population activity overview across frames and cells.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/03_population_activity_heatmap.png" alt="Population activity heatmap legacy">
+              <div class="figure-caption">A second activity view that keeps the cohort’s raw structure visible.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/04_population_response_energy.png" alt="Population response energy">
+              <div class="figure-caption">Neural response energy as a bridge to stimulus features.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/04_population_energy_vs_rms_contrast.png" alt="Population energy versus RMS contrast">
+              <div class="figure-caption">Population energy tracks stimulus contrast in a meaningful but not perfect way.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/04_trial_variability_by_frame.png" alt="Trial variability by frame">
+              <div class="figure-caption">Frame-by-frame trial variability shows why repeat-aware evaluation matters.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/05_pca_cumulative_explained_variance.png" alt="PCA cumulative explained variance">
+              <div class="figure-caption">The dimensionality story begins with PCA explained variance.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/05_representation_feature_predictivity_summary.png" alt="Representation feature predictivity summary">
+              <div class="figure-caption">Comparison across representations shows what generalizes and what does not.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/06_raw_cells_balanced_confident_orientation_repeat_heldout.png" alt="Raw cell orientation decoding">
+              <div class="figure-caption">Raw-cell decoding with held-out repeats keeps the main classification result honest.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/06_best_non_null_real_feature_confusion_matrix.png" alt="Best confusion matrix">
+              <div class="figure-caption">A look at which real labels are hardest for the model to separate.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/07_cebra_latent_trajectory.png" alt="CEBRA latent trajectory">
+              <div class="figure-caption">The learned latent trajectory is where geometry and interpretation meet.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/07_cebra_vs_classical_embedding_predictivity.png" alt="CEBRA vs classical embedding predictivity">
+              <div class="figure-caption">CEBRA is compared directly against classical embeddings rather than assumed to win.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/07_drnn_training_curve.png" alt="dRNN training curve">
+              <div class="figure-caption">The temporal model captures structure, but it must still compete with persistence.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/08_best_classification_decoding_results.png" alt="Best classification results">
+              <div class="figure-caption">Classification results are summarized without hiding the baselines.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/08_best_real_feature_decoding_by_embedding.png" alt="Best real feature decoding by embedding">
+              <div class="figure-caption">Different embeddings preserve different kinds of real movie information.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/08_geometry_curvature_by_embedding.png" alt="Geometry curvature by embedding">
+              <div class="figure-caption">Curvature is one of several geometry summaries that remain descriptive, not causal.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/08_geometry_participation_ratio_by_embedding.png" alt="Geometry participation ratio by embedding">
+              <div class="figure-caption">Participation ratio helps compare how compact or diffuse each embedding is.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/09_cebra_speed_timeseries.png" alt="CEBRA speed time series">
+              <div class="figure-caption">The latent trajectory is not static; its dynamics matter.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/09_cebra_curvature_timeseries.png" alt="CEBRA curvature time series">
+              <div class="figure-caption">Curvature spikes show when the manifold changes direction sharply.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/09_cebra_tangling_timeseries.png" alt="CEBRA tangling time series">
+              <div class="figure-caption">Tangling is a useful warning sign for complex local geometry.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/09_event_triggered_context_high_speed_cebra.png" alt="High-speed event context">
+              <div class="figure-caption">Event-triggered views make the geometry easier to interpret in context.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/09_event_triggered_context_high_curvature_cebra.png" alt="High-curvature event context">
+              <div class="figure-caption">High-curvature events often sit near visually recognizable movie moments.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/09_event_triggered_context_high_tangling_cebra.png" alt="High-tangling event context">
+              <div class="figure-caption">High-tangling events are interpreted cautiously and descriptively.</div>
+            </div>
+            <div class="figure-card">
+              <img src="assets/09_movie_frames_at_top_geometry_events_cebra.png" alt="Movie frames at top geometry events">
+              <div class="figure-caption">The strongest interpretability figure brings the movie frames back into view.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plates" class="section">
+      <div class="wrap">
+        <div class="band reveal">
+          <h3>Additional plates</h3>
+          <p class="muted">
+            These figures are smaller pieces of the same story: balance checks, trajectory views, summary plots,
+            and technical controls that make the stronger narrative trustworthy.
+          </p>
+          <div class="gallery-grid">
+            <div class="figure-card"><img src="assets/04_confident_orientation_class_balance.png" alt="Confident orientation balance"><div class="figure-caption">Confident orientation balance.</div></div>
+            <div class="figure-card"><img src="assets/04_dominant_orientation_class_balance.png" alt="Dominant orientation balance"><div class="figure-caption">Dominant orientation class balance.</div></div>
+            <div class="figure-card"><img src="assets/04_orientation_class_balance.png" alt="Orientation class balance"><div class="figure-caption">Orientation class balance across the movie.</div></div>
+            <div class="figure-card"><img src="assets/04_example_movie_frames_by_orientation_class.png" alt="Example movie frames by orientation class"><div class="figure-caption">Example movie frames by orientation class.</div></div>
+            <div class="figure-card"><img src="assets/04_example_movie_frames_by_orientation_class_spread.png" alt="Orientation frame spread"><div class="figure-caption">Spread of frames by orientation class.</div></div>
+            <div class="figure-card"><img src="assets/04_population_activity_heatmap_robust.png" alt="Robust population heatmap"><div class="figure-caption">Robust population heatmap.</div></div>
+            <div class="figure-card"><img src="assets/04_zscored_population_energy_and_movie_features.png" alt="Z-scored population energy and features"><div class="figure-caption">Population energy and movie features on a shared scale.</div></div>
+            <div class="figure-card"><img src="assets/05_pca_latent_trajectory_frame_index.png" alt="PCA trajectory frame index"><div class="figure-caption">PCA trajectory colored by frame index.</div></div>
+            <div class="figure-card"><img src="assets/05_umap_latent_trajectory_frame_index.png" alt="UMAP trajectory frame index"><div class="figure-caption">UMAP trajectory colored by frame index.</div></div>
+            <div class="figure-card"><img src="assets/05_isomap_latent_trajectory_frame_index.png" alt="ISOMAP trajectory frame index"><div class="figure-caption">ISOMAP trajectory colored by frame index.</div></div>
+            <div class="figure-card"><img src="assets/05_pca_latent_trajectory_rms_contrast.png" alt="PCA trajectory RMS contrast"><div class="figure-caption">PCA trajectory versus RMS contrast.</div></div>
+            <div class="figure-card"><img src="assets/05_umap_latent_trajectory_rms_contrast.png" alt="UMAP trajectory RMS contrast"><div class="figure-caption">UMAP trajectory versus RMS contrast.</div></div>
+            <div class="figure-card"><img src="assets/05_isomap_latent_trajectory_rms_contrast.png" alt="ISOMAP trajectory RMS contrast"><div class="figure-caption">ISOMAP trajectory versus RMS contrast.</div></div>
+            <div class="figure-card"><img src="assets/07_cebra_latent_trajectory_rms_contrast.png" alt="CEBRA RMS contrast trajectory"><div class="figure-caption">CEBRA trajectory colored by RMS contrast.</div></div>
+            <div class="figure-card"><img src="assets/07_cebra_latent_trajectory_spatial_frequency_centroid.png" alt="CEBRA spatial frequency trajectory"><div class="figure-caption">CEBRA trajectory colored by spatial frequency.</div></div>
+            <div class="figure-card"><img src="assets/07_cebra_latent_trajectory_orientation_selectivity.png" alt="CEBRA orientation selectivity trajectory"><div class="figure-caption">CEBRA trajectory colored by orientation selectivity.</div></div>
+            <div class="figure-card"><img src="assets/07_cebra_latent_trajectory_luminance_std.png" alt="CEBRA luminance trajectory"><div class="figure-caption">CEBRA trajectory colored by luminance variability.</div></div>
+            <div class="figure-card"><img src="assets/08_cebra_vs_classical_embedding_summary.png" alt="CEBRA versus classical embedding summary"><div class="figure-caption">CEBRA versus classical embeddings.</div></div>
+            <div class="figure-card"><img src="assets/08_continuous_feature_decoding_r2.png" alt="Continuous decoding R2"><div class="figure-caption">Continuous feature decoding summary.</div></div>
+            <div class="figure-card"><img src="assets/08_curvature_vs_decoding_accuracy.png" alt="Curvature versus decoding accuracy"><div class="figure-caption">Geometry versus decoding accuracy.</div></div>
+            <div class="figure-card"><img src="assets/09_cebra_speed_timeseries_clipped_p99.png" alt="Speed clipped time series"><div class="figure-caption">Speed time series clipped at the 99th percentile.</div></div>
+            <div class="figure-card"><img src="assets/09_cebra_curvature_timeseries_clipped_p99.png" alt="Curvature clipped time series"><div class="figure-caption">Curvature time series clipped at the 99th percentile.</div></div>
+            <div class="figure-card"><img src="assets/09_cebra_tangling_timeseries_clipped_p99.png" alt="Tangling clipped time series"><div class="figure-caption">Tangling time series clipped at the 99th percentile.</div></div>
+          </div>
+        </div>
       </div>
     </section>
 
